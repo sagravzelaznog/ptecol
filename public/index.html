@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API de Alumnos</title>
+    <script>
+        async function fetchAlumnos() {
+            const response = await fetch('http://localhost:3000/api/alumnos');
+            const data = await response.json();
+            console.log(data);
+        }
+
+        async function addAlumno() {
+            const nombre = document.getElementById('nombre').value;
+            const edad = document.getElementById('edad').value;
+            const semestre = document.getElementById('semestre').value;
+
+            await fetch('http://localhost:3000/api/alumnos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nombre, edad, semestre }),
+            });
+
+            fetchAlumnos();
+        }
+    </script>
+</head>
+<body>
+    <h1>Gestión de Alumnos</h1>
+    <input id="nombre" placeholder="Nombre">
+    <input id="edad" type="number" placeholder="Edad">
+    <input id="semestre" type="number" placeholder="Semestre">
+    <button onclick="addAlumno()">Agregar Alumno</button>
+    <button onclick="fetchAlumnos()">Consultar Alumnos</button>
+</body>
+</html>

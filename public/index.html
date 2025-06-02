@@ -6,7 +6,7 @@
     <title>API de Alumnos</title>
     <script>
         async function fetchAlumnos() {
-            const response = await fetch('http://localhost:3000/api/alumnos');
+            const response = await fetch('http://localhost:5432/api/alumnos');
             const data = await response.json();
             console.log(data);
         }
@@ -16,7 +16,7 @@
             const edad = document.getElementById('edad').value;
             const semestre = document.getElementById('semestre').value;
 
-            await fetch('http://localhost:3000/api/alumnos', {
+            await fetch('http://localhost:5432/api/alumnos', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ nombre, edad, semestre }),
